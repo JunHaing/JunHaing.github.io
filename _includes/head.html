@@ -1,0 +1,40 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+<meta name="description" content="{% if page.description %}{{ page.description }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+
+<!-- Open Graph (카카오/페이스북 공유 시 미리보기) -->
+<meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+<meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="{{ site.title }}">
+
+<!-- 구조화 데이터 (구글 검색 결과 강화) -->
+{% if page.layout == 'post' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ page.title }}",
+  "description": "{{ page.description | default: page.excerpt | strip_html | truncate: 160 }}",
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "author": {"@type": "Person", "name": "{{ site.author.name }}"},
+  "publisher": {"@type": "Organization", "name": "{{ site.title }}"}
+}
+</script>
+{% endif %}
+
+{% seo %}
+{% feed_meta %}
+
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+
+<!-- 구글 애드센스 (승인 후 _config.yml에서 enabled: true로 변경) -->
+{% if site.adsense.enabled %}
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.adsense.client }}" crossorigin="anonymous"></script>
+{% endif %}
+
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">

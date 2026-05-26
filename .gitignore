@@ -1,0 +1,21 @@
+# API 키 (절대 GitHub에 올리면 안됨)
+.env
+
+# Jekyll 빌드 결과물
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# 파이썬
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# macOS
+.DS_Store
+
+# 에디터
+.vscode/
+.idea/
