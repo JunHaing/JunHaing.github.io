@@ -19,3 +19,9 @@ venv/
 # 에디터
 .vscode/
 .idea/
+
+# 로컬 전용 (GitHub에 올리지 않음)
+run_blog_post.sh
+.claude/commands/blog-post.md
+.claude/settings.local.json
+logs/

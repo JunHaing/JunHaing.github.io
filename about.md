@@ -19,4 +19,4 @@ permalink: /about/
 
 ### 문의
 
-이메일: monkey3039@gmail.com
+이메일: dlwnsgod3039@kakao.com
