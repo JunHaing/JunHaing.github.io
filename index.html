@@ -94,7 +94,11 @@ title: 홈
       const cats = item.dataset.categories ? item.dataset.categories.split(',') : [];
       const show = cat === 'all' || cats.includes(cat);
       item.style.display = show ? '' : 'none';
-      if (show) visible++;
+      if (show) {
+        // 화면에 보이는 첫 번째 항목은 상단 패딩 제거, 나머지는 유지
+        item.style.paddingTop = visible === 0 ? '0' : '';
+        visible++;
+      }
     });
     titleEl.textContent = label;
     countEl.textContent = visible + '개';
@@ -111,7 +115,10 @@ title: 홈
     });
   });
 
-  // 초기 카운트 표시
+  // 초기 상태: 전체 표시, 첫 항목 상단 패딩 제거
+  postItems.forEach(function (item, i) {
+    item.style.paddingTop = i === 0 ? '0' : '';
+  });
   countEl.textContent = postItems.length + '개';
 })();
 </script>

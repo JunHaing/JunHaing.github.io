@@ -70,7 +70,7 @@ body {
   padding: 28px 0;
 }
 
-.post-list-item:first-child { padding-top: 0; }
+/* 첫 항목 상단 패딩은 JavaScript에서 동적으로 제어 */
 
 .post-list-item h2 {
   font-size: 20px;
