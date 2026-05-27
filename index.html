@@ -1,20 +1,117 @@
 ---
-layout: default
+layout: home
 title: 홈
 ---
-<div class="home">
+
+<!-- 사이드바 -->
+<aside class="sidebar">
+  <nav class="category-nav">
+    <ul class="category-tree">
+
+      <li class="cat-root" data-cat="all">
+        <a href="#" class="cat-link active">
+          <span class="cat-arrow">▾</span>
+          전체
+          <span class="cat-count">{{ site.posts | size }}</span>
+        </a>
+        <ul class="cat-children">
+          <li class="cat-child" data-cat="재테크">
+            <a href="#" class="cat-link">
+              재테크
+              <span class="cat-count">{{ site.categories['재테크'] | size }}</span>
+            </a>
+          </li>
+          <li class="cat-child" data-cat="정부지원금">
+            <a href="#" class="cat-link">
+              정부지원금
+              <span class="cat-count">{{ site.categories['정부지원금'] | size }}</span>
+            </a>
+          </li>
+          <li class="cat-child" data-cat="건강">
+            <a href="#" class="cat-link">
+              건강
+              <span class="cat-count">{{ site.categories['건강'] | size }}</span>
+            </a>
+          </li>
+          <li class="cat-child" data-cat="IT정보">
+            <a href="#" class="cat-link">
+              IT정보
+              <span class="cat-count">{{ site.categories['IT정보'] | size }}</span>
+            </a>
+          </li>
+          <li class="cat-child" data-cat="생활법률세금">
+            <a href="#" class="cat-link">
+              생활법률세금
+              <span class="cat-count">{{ site.categories['생활법률세금'] | size }}</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+  </nav>
+</aside>
+
+<!-- 포스트 목록 -->
+<section class="post-area">
+  <div class="post-area-header">
+    <h2 class="current-category-title">전체</h2>
+    <span class="current-category-count"></span>
+  </div>
+
   <ul class="post-list">
     {% for post in site.posts %}
-    <li class="post-list-item">
-      <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+    <li class="post-list-item" data-categories="{{ post.categories | join: ',' }}">
+      <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
       <div class="post-list-meta">
         <time>{{ post.date | date: "%Y년 %m월 %d일" }}</time>
+        {% if post.categories.size > 0 %}
+        · <span class="post-cat-label">{{ post.categories | first }}</span>
+        {% endif %}
         {% if post.tags.size > 0 %}
-        · {% for tag in post.tags limit:3 %}<span>{{ tag }}</span>{% unless forloop.last %}, {% endunless %}{% endfor %}
+        · {% for tag in post.tags limit:2 %}<span>{{ tag }}</span>{% unless forloop.last %}, {% endunless %}{% endfor %}
         {% endif %}
       </div>
-      <p class="post-list-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+      <p class="post-list-excerpt">{{ post.excerpt | strip_html | truncate: 130 }}</p>
     </li>
     {% endfor %}
   </ul>
-</div>
+
+  <p class="no-posts-msg" style="display:none;">해당 카테고리의 글이 없습니다.</p>
+</section>
+
+<script>
+(function () {
+  const catItems  = document.querySelectorAll('[data-cat]');
+  const postItems = document.querySelectorAll('.post-list-item');
+  const titleEl   = document.querySelector('.current-category-title');
+  const countEl   = document.querySelector('.current-category-count');
+  const noPostEl  = document.querySelector('.no-posts-msg');
+
+  function filterPosts(cat, label) {
+    let visible = 0;
+    postItems.forEach(function (item) {
+      const cats = item.dataset.categories ? item.dataset.categories.split(',') : [];
+      const show = cat === 'all' || cats.includes(cat);
+      item.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    titleEl.textContent = label;
+    countEl.textContent = visible + '개';
+    noPostEl.style.display = visible === 0 ? '' : 'none';
+  }
+
+  catItems.forEach(function (item) {
+    item.querySelector('.cat-link').addEventListener('click', function (e) {
+      e.preventDefault();
+      // active 상태 갱신
+      document.querySelectorAll('.cat-link').forEach(function (l) { l.classList.remove('active'); });
+      this.classList.add('active');
+      filterPosts(item.dataset.cat, item.querySelector('.cat-link').childNodes[0].textContent.trim());
+    });
+  });
+
+  // 초기 카운트 표시
+  countEl.textContent = postItems.length + '개';
+})();
+</script>
