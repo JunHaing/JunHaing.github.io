@@ -222,6 +222,29 @@ body {
 
 .footer-desc { font-size: 12px !important; }
 
+/* 포스트 이미지 */
+.post-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin: 8px 0 0;
+}
+
+.post-content figure,
+.car-figure {
+  margin: 32px 0;
+}
+
+.post-content figcaption,
+.car-figure figcaption {
+  font-size: 13px;
+  color: var(--color-text-light);
+  text-align: center;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
 /* ── 홈 레이아웃 (사이드바 + 포스트 영역) ── */
 .home-main {
   max-width: 1060px;
