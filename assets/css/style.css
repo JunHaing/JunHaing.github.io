@@ -245,25 +245,34 @@ body {
   line-height: 1.5;
 }
 
-/* ── 홈 레이아웃 (사이드바 + 포스트 영역) ── */
+/* ── 홈 레이아웃: 3컬럼 그리드 ── */
+/* [1fr 사이드바 공간] [780px 글목록] [1fr 우측 여백]
+   → 사이드바 중심 = 1fr/2 = 글목록 왼쪽과 화면 왼쪽의 정확한 중간 */
 .home-main {
-  max-width: 1060px;
-  margin: 0 auto;
-  padding: 36px 20px;
-  display: flex;
-  gap: 28px;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 780px) 1fr;
+  align-items: start;
+  padding: 36px 0;
+  width: 100%;
 }
 
-/* 사이드바 */
+/* 사이드바: 왼쪽 1fr 안에서 가운데 정렬 */
 .sidebar {
-  width: 190px;
-  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 16px;
+}
+
+.category-nav {
   position: sticky;
   top: 72px;
+  width: 190px;
+  background: var(--color-bg-gray);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 16px 14px;
 }
-
-.category-nav { background: var(--color-bg-gray); border: 1px solid var(--color-border); border-radius: 10px; padding: 16px 14px; }
 
 .category-tree { list-style: none; }
 
@@ -346,7 +355,7 @@ body {
 .cat-child .cat-link.active { background: #e8f0fe; color: var(--color-primary); font-weight: 700; }
 
 /* 포스트 영역 */
-.post-area { flex: 1; min-width: 0; }
+.post-area { min-width: 0; padding-right: 20px; }
 
 .post-area-header {
   display: flex;
@@ -389,15 +398,19 @@ body {
   .main-content { padding: 24px 16px; }
 
   .home-main {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     padding: 20px 16px;
-    gap: 20px;
   }
   .sidebar {
-    width: 100%;
+    justify-content: flex-start;
+    padding: 0;
+  }
+  .category-nav {
     position: static;
+    width: 100%;
   }
   .cat-children { display: flex; flex-wrap: wrap; gap: 6px; border-left: none; margin-left: 0; padding-left: 0; margin-top: 10px; }
   .cat-child::before, .cat-child::after { display: none; }
   .cat-child .cat-link { border: 1px solid var(--color-border); border-radius: 20px; padding: 4px 12px; }
+  .post-area { padding-right: 0; }
 }
