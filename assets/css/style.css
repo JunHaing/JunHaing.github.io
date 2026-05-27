@@ -62,6 +62,42 @@ body {
 /* 메인 */
 .main-content { padding: 40px 20px; }
 
+/* 소개 등 일반 페이지 가독성 */
+.main-content h2 {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--color-primary);
+}
+.main-content h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 40px 0 14px;
+  color: var(--color-text);
+}
+.main-content p {
+  margin-bottom: 16px;
+  line-height: 1.9;
+  color: var(--color-text);
+}
+.main-content ul {
+  list-style: none;
+  margin: 0 0 16px 0;
+  padding: 0;
+}
+.main-content ul li {
+  padding: 10px 0 10px 0;
+  border-bottom: 1px solid var(--color-border);
+  line-height: 1.7;
+}
+.main-content ul li:last-child { border-bottom: none; }
+.main-content hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 36px 0;
+}
+
 /* 홈 - 포스트 목록 */
 .post-list { list-style: none; }
 
