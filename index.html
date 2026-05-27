@@ -105,13 +105,21 @@ title: 홈
     noPostEl.style.display = visible === 0 ? '' : 'none';
   }
 
+  // span 등 자식 엘리먼트를 제외하고 텍스트 노드만 추출
+  function getLinkLabel(linkEl) {
+    return Array.from(linkEl.childNodes)
+      .filter(function (n) { return n.nodeType === Node.TEXT_NODE; })
+      .map(function (n) { return n.textContent.trim(); })
+      .filter(function (t) { return t.length > 0; })
+      .join('');
+  }
+
   catItems.forEach(function (item) {
     item.querySelector('.cat-link').addEventListener('click', function (e) {
       e.preventDefault();
-      // active 상태 갱신
       document.querySelectorAll('.cat-link').forEach(function (l) { l.classList.remove('active'); });
       this.classList.add('active');
-      filterPosts(item.dataset.cat, item.querySelector('.cat-link').childNodes[0].textContent.trim());
+      filterPosts(item.dataset.cat, getLinkLabel(item.querySelector('.cat-link')));
     });
   });
 
