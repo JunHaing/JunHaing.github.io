@@ -136,11 +136,6 @@ EV6와 EV3 사이의 공백을 채우는 준중형 전기 세단입니다. 4,000
 
 ## 세 차 한눈에 비교
 
-<figure>
-  <img src="/assets/images/posts/2026-06-05-2026-new-ev-comparison-2.jpg" alt="2026 전기차 3종 비교" loading="lazy">
-  <figcaption>▲ 2026년 주목받는 전기차 3종 / AI 생성 이미지</figcaption>
-</figure>
-
 | 항목 | 아이오닉9 | 기아 EV4 | 모델Y 주니퍼 |
 |------|---------|---------|------------|
 | 차종 | 3열 대형 SUV | 준중형 세단 | 중형 SUV |
