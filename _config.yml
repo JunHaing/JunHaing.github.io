@@ -6,7 +6,7 @@ lang: ko-KR
 
 markdown: kramdown
 highlighter: rouge
-permalink: /:year/:month/:day/:title/
+permalink: /:title/
 future: true
 
 plugins:
