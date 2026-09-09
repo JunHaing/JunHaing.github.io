@@ -22,6 +22,10 @@ adsense:
   slot_mid: ""     # 본문 중간 광고 슬롯 ID
   slot_bot: ""     # 하단 광고 슬롯 ID
 
+# 방문자 카운터 설정 (https://www.goatcounter.com 무료 가입 후 사이트 코드 입력)
+goatcounter:
+  code: "junhaing"
+
 author:
   name: "JunHaing"
   email: "monkey3039@gmail.com"

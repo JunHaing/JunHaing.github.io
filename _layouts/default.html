@@ -9,6 +9,9 @@
     {{ content }}
   </main>
   {% include footer.html %}
+  {% if site.goatcounter.code %}
+  <script data-goatcounter="https://{{ site.goatcounter.code }}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  {% endif %}
   <script src="{{ '/assets/js/visitor-counter.js' | relative_url }}"></script>
 </body>
 </html>
